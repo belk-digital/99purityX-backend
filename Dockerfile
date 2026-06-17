@@ -10,14 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install uv
-
-COPY pyproject.toml uv.lock* ./
-RUN uv sync --frozen --no-dev 2>/dev/null || uv sync --no-dev
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p storage/documents && chmod +x start.sh
+RUN mkdir -p storage/documents
 
 EXPOSE 8000
 
