@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual Environment
+.venv/
+venv/
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+
+# Build
+dist/
+build/
+
+# Logs
+*.log
+
+# Alembic
+alembic/versions/*.pyc
+
+# Coverage
+htmlcov/
+.coverage
+
+# Mypy
+.mypy_cache/
+
+# Ruff
+.ruff_cache/
+
+# Storage uploads
+storage/documents/*
+!storage/documents/.gitkeep
+
+# uv
+uv.lock

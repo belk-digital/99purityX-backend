@@ -1,0 +1,37 @@
+[project]
+name = "longevity-platform"
+version = "0.1.0"
+description = "Longevity & Optimization Telehealth Platform"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosmtplib==5.1.0",
+    "alembic==1.14.1",
+    "asyncpg==0.30.0",
+    "bcrypt==4.0.1",
+    "boto3==1.36.0",
+    "cryptography==44.0.1",
+    "email-validator>=2.3.0",
+    "fastapi==0.115.6",
+    "google-auth>=2.53.0",
+    "httpx==0.28.1",
+    "jinja2==3.1.5",
+    "passlib[bcrypt]==1.7.4",
+    "pillow==11.1.0",
+    "pydantic==2.10.6",
+    "pydantic-settings==2.7.1",
+    "pytest==8.3.5",
+    "pytest-asyncio==0.25.3",
+    "python-dateutil==2.9.0.post0",
+    "python-dotenv==1.0.1",
+    "python-jose[cryptography]==3.3.0",
+    "python-multipart==0.0.20",
+    "redis==5.2.1",
+    "shortuuid==1.0.13",
+    "sqlalchemy[asyncio]==2.0.38",
+    "stripe==11.3.0",
+    "twilio>=9.10.9",
+    "uvicorn[standard]==0.34.0",
+]
+
+[tool.uv]
+python-preference = "only-managed"
