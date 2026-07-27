@@ -41,6 +41,9 @@ from app.modules.analytics.api.analytics_routes import (
 from app.modules.documents.api.document_routes import (
     router as document_router,
 )
+from app.modules.organizations.api.organization_routes import (
+    router as organization_router,
+)
 
 app = FastAPI()
 
@@ -58,6 +61,7 @@ app.include_router(auth_router)
 app.include_router(audit_router)
 app.include_router(patient_router)
 app.include_router(provider_router)
+app.include_router(organization_router)
 app.include_router(appointment_router)
 app.include_router(consultation_router)
 app.include_router(lab_router)

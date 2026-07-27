@@ -43,6 +43,18 @@ from app.modules.analytics.models.program_analytics_model import (
 )
 from app.modules.documents.models.document_model import Document
 
+from app.modules.organizations.models.organization import (
+    Organization,
+)
+
+from app.modules.organization_memberships.models.organization_membership import (
+    OrganizationMembership,
+)
+
+from app.modules.organization_invitations.models.organization_invitation import (
+    OrganizationInvitation,
+)
+
 from app.modules.auth.models.otp_verification import (
     OTPVerification,
 )

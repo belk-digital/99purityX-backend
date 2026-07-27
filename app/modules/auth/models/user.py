@@ -20,6 +20,7 @@ from app.infrastructure.database.mixins import (
     TimestampMixin,
     UUIDMixin,
 )
+from app.modules.organization_invitations.models.organization_invitation import OrganizationInvitation
 
 if TYPE_CHECKING:
     from app.modules.documents.models.document_model import Document
@@ -28,6 +29,9 @@ if TYPE_CHECKING:
     from app.modules.auth.models.session import UserSession
     from app.modules.patients.models.patient_model import Patient
     from app.modules.providers.models.provider_model import Provider
+    from app.modules.organization_memberships.models.organization_membership import (
+    OrganizationMembership,
+    )
 
 
 class User(
@@ -116,6 +120,19 @@ class User(
     uploaded_documents: Mapped[list["Document"]] = relationship(
         "Document",
         back_populates="uploaded_by_user",
+        lazy="selectin",
+    )
+    
+    organization_memberships: Mapped[list["OrganizationMembership"]] = relationship(
+        "OrganizationMembership",
+        foreign_keys="OrganizationMembership.user_id",
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+    
+    sent_organization_invitations: Mapped[list["OrganizationInvitation"]] = relationship(
+        "OrganizationInvitation",
+        foreign_keys="OrganizationInvitation.invited_by",
         lazy="selectin",
     )
 
