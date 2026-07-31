@@ -3,7 +3,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict
 
-from app.modules.sales.constants.sales_enums import (
+from app.modules.sales.constants.sales_team_enums import (
     SalesTeamStatus,
 )
 

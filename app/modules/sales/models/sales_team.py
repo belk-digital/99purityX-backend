@@ -22,7 +22,7 @@ from app.infrastructure.database.mixins import (
     UUIDMixin,
 )
 
-from app.modules.sales.constants.sales_enums import (
+from app.modules.sales.constants.sales_team_enums import (
     SalesTeamStatus,
 )
 

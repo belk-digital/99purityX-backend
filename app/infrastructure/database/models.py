@@ -60,6 +60,7 @@ from app.modules.sales.models.sales_organization import SalesOrganization
 from app.modules.sales.models.sales_team import (
     SalesTeam,
 )
+from app.modules.sales.models.territory import Territory
 
 from app.modules.auth.models.otp_verification import (
     OTPVerification,

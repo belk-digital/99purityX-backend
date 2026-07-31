@@ -20,14 +20,20 @@ from app.infrastructure.database.mixins import (
     UUIDMixin,
 )
 
-from app.modules.sales.constants.sales_enums import (
+from app.modules.sales.constants.sales_organization_enums import (
     SalesOrganizationStatus,
 )
 
 if TYPE_CHECKING:
-      from app.modules.sales.models.sales_team import SalesTeam
-#     from app.modules.sales.models.sales_member import SalesMember
-#     from app.modules.sales.models.territory import Territory
+    from app.modules.sales.models.sales_team import (
+        SalesTeam,
+    )
+    from app.modules.sales.models.territory import (
+        Territory,
+    )
+    # from app.modules.sales.models.sales_member import (
+    #     SalesMember,
+    # )
 
 
 class SalesOrganization(
@@ -149,11 +155,11 @@ class SalesOrganization(
         cascade="all, delete-orphan",
     )
 
-    # territories: Mapped[list["Territory"]] = relationship(
-    #     "Territory",
-    #     back_populates="sales_organization",
-    #     cascade="all, delete-orphan",
-    # )
+    territories: Mapped[list["Territory"]] = relationship(
+        "Territory",
+        back_populates="sales_organization",
+        cascade="all, delete-orphan",
+    )
 
     # sales_members: Mapped[list["SalesMember"]] = relationship(
     #     "SalesMember",

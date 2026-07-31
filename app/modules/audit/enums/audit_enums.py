@@ -43,5 +43,6 @@ class AuditResource(str, Enum):
     SALES_TEAM = "SALES_TEAM"
     TERRITORY = "TERRITORY"
     SALES_MEMBER = "SALES_MEMBER"
+    TERRITORY = "TERRITORY"
 
     OTP = "OTP"
