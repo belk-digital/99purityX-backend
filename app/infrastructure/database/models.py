@@ -55,6 +55,12 @@ from app.modules.organization_invitations.models.organization_invitation import 
     OrganizationInvitation,
 )
 
+from app.modules.sales.models.sales_organization import SalesOrganization
+
+from app.modules.sales.models.sales_team import (
+    SalesTeam,
+)
+
 from app.modules.auth.models.otp_verification import (
     OTPVerification,
 )
