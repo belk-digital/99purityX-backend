@@ -26,6 +26,9 @@ from app.modules.organizations.constants.organization_status import (
 from app.modules.organizations.constants.organization_type import (
     OrganizationType,
 )
+from app.modules.organization_sales_accounts.models.organization_sales_account import (
+    OrganizationSalesAccount,
+)
 
 if TYPE_CHECKING:
     from app.modules.organization_memberships.models.organization_membership import (
@@ -150,5 +153,12 @@ class Organization(
     organization_invitations: Mapped[list["OrganizationInvitation"]] = relationship(
         "OrganizationInvitation",
         back_populates="organization",
+        cascade="all, delete-orphan",
+    )
+    
+    sales_account: Mapped["OrganizationSalesAccount"] = relationship(
+        "OrganizationSalesAccount",
+        back_populates="organization",
+        uselist=False,
         cascade="all, delete-orphan",
     )

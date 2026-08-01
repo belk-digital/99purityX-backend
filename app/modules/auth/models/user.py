@@ -20,7 +20,10 @@ from app.infrastructure.database.mixins import (
     TimestampMixin,
     UUIDMixin,
 )
-from app.modules.organization_invitations.models.organization_invitation import OrganizationInvitation
+
+from app.modules.organization_invitations.models.organization_invitation import (
+    OrganizationInvitation,
+)
 
 if TYPE_CHECKING:
     from app.modules.documents.models.document_model import Document
@@ -30,7 +33,10 @@ if TYPE_CHECKING:
     from app.modules.patients.models.patient_model import Patient
     from app.modules.providers.models.provider_model import Provider
     from app.modules.organization_memberships.models.organization_membership import (
-    OrganizationMembership,
+        OrganizationMembership,
+    )
+    from app.modules.sales.models.sales_member import (
+        SalesMember,
     )
 
 
@@ -134,6 +140,12 @@ class User(
         "OrganizationInvitation",
         foreign_keys="OrganizationInvitation.invited_by",
         lazy="selectin",
+    )
+    
+    sales_members: Mapped[list["SalesMember"]] = relationship(
+        "SalesMember",
+        back_populates="user",
+        cascade="all, delete-orphan",
     )
 
     

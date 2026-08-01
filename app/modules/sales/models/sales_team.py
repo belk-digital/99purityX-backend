@@ -1,6 +1,7 @@
 from __future__ import annotations
-from uuid import UUID
+
 from typing import TYPE_CHECKING
+from uuid import UUID
 
 from sqlalchemy import (
     Boolean,
@@ -27,8 +28,12 @@ from app.modules.sales.constants.sales_team_enums import (
 )
 
 if TYPE_CHECKING:
-    from app.modules.sales.models.sales_organization import SalesOrganization
-    # from app.modules.sales.models.sales_member import SalesMember
+    from app.modules.sales.models.sales_organization import (
+        SalesOrganization,
+    )
+    from app.modules.sales.models.sales_member import (
+        SalesMember,
+    )
 
 
 class SalesTeam(
@@ -37,7 +42,7 @@ class SalesTeam(
     TimestampMixin,
 ):
     """
-    Represents a functional sales team within a Sales Organization.
+    Represents a functional Sales Team within a Sales Organization.
 
     Examples:
     - Enterprise Sales
@@ -62,6 +67,10 @@ class SalesTeam(
         ),
     )
 
+    # -------------------------------------------------------------------------
+    # Relationships
+    # -------------------------------------------------------------------------
+
     sales_organization_id: Mapped[UUID] = mapped_column(
         ForeignKey(
             "sales_organizations.id",
@@ -70,6 +79,10 @@ class SalesTeam(
         nullable=False,
         index=True,
     )
+
+    # -------------------------------------------------------------------------
+    # Team Information
+    # -------------------------------------------------------------------------
 
     name: Mapped[str] = mapped_column(
         String(255),
@@ -86,6 +99,10 @@ class SalesTeam(
         nullable=True,
     )
 
+    # -------------------------------------------------------------------------
+    # Status
+    # -------------------------------------------------------------------------
+
     status: Mapped[SalesTeamStatus] = mapped_column(
         Enum(
             SalesTeamStatus,
@@ -101,25 +118,17 @@ class SalesTeam(
         nullable=False,
     )
 
-    # ------------------------------------------------------------------
-    # Future Relationships
-    # ------------------------------------------------------------------
-    #
-    # manager_id -> SalesMember (Phase 4.4)
-    # members -> SalesMember (Phase 4.4)
-    #
+    # -------------------------------------------------------------------------
+    # ORM Relationships
+    # -------------------------------------------------------------------------
 
     sales_organization: Mapped["SalesOrganization"] = relationship(
         "SalesOrganization",
         back_populates="sales_teams",
     )
 
-    # manager: Mapped["SalesMember"] = relationship(
-    #     "SalesMember",
-    #     foreign_keys=[manager_id],
-    # )
-
-    # members: Mapped[list["SalesMember"]] = relationship(
-    #     "SalesMember",
-    #     back_populates="sales_team",
-    # )
+    sales_members: Mapped[list["SalesMember"]] = relationship(
+        "SalesMember",
+        back_populates="sales_team",
+        cascade="all, delete-orphan",
+    )

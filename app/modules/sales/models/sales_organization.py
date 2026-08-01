@@ -23,6 +23,9 @@ from app.infrastructure.database.mixins import (
 from app.modules.sales.constants.sales_organization_enums import (
     SalesOrganizationStatus,
 )
+from app.modules.organization_sales_accounts.models.organization_sales_account import (
+    OrganizationSalesAccount,
+)
 
 if TYPE_CHECKING:
     from app.modules.sales.models.sales_team import (
@@ -31,9 +34,9 @@ if TYPE_CHECKING:
     from app.modules.sales.models.territory import (
         Territory,
     )
-    # from app.modules.sales.models.sales_member import (
-    #     SalesMember,
-    # )
+    from app.modules.sales.models.sales_member import (
+        SalesMember,
+    )
 
 
 class SalesOrganization(
@@ -133,17 +136,6 @@ class SalesOrganization(
         default=True,
         nullable=False,
     )
-    
-    # ------------------------------------------------------------------
-    # Future Relationships
-    # ------------------------------------------------------------------
-    # These relationships will be enabled in later phases:
-    #
-    # Phase 4.2 -> SalesTeam
-    # Phase 4.3 -> Territory
-    # Phase 4.4 -> SalesMember
-    #
-    # Uncomment once the corresponding models are implemented.
 
     # ------------------------------------------------------------------
     # Relationships
@@ -161,8 +153,14 @@ class SalesOrganization(
         cascade="all, delete-orphan",
     )
 
-    # sales_members: Mapped[list["SalesMember"]] = relationship(
-    #     "SalesMember",
-    #     back_populates="sales_organization",
-    #     cascade="all, delete-orphan",
-    # )
+    sales_members: Mapped[list["SalesMember"]] = relationship(
+        "SalesMember",
+        back_populates="sales_organization",
+        cascade="all, delete-orphan",
+    )
+    
+    organization_sales_accounts: Mapped[list["OrganizationSalesAccount"]] = relationship(
+        "OrganizationSalesAccount",
+        back_populates="sales_organization",
+        cascade="all, delete-orphan",
+    )

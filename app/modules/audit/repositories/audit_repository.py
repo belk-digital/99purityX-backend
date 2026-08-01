@@ -9,12 +9,12 @@ class AuditRepository:
     @staticmethod
     async def create(
         db: AsyncSession,
-        audit_log: AuditLog
+        audit_log: AuditLog,
     ) -> AuditLog:
 
         db.add(audit_log)
 
-        await db.commit()
+        await db.flush()
         await db.refresh(audit_log)
 
         return audit_log
@@ -23,12 +23,14 @@ class AuditRepository:
     async def get_all(
         db: AsyncSession,
         limit: int = 100,
-        offset: int = 0
+        offset: int = 0,
     ):
 
         query = (
             select(AuditLog)
-            .order_by(AuditLog.created_at.desc())
+            .order_by(
+                AuditLog.created_at.desc()
+            )
             .limit(limit)
             .offset(offset)
         )

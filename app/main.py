@@ -53,6 +53,12 @@ from app.modules.sales.api.sales_team_routes import (
 from app.modules.sales.api.territory_routes import (
     router as territory_router,
 )
+from app.modules.sales.api.sales_member_routes import (
+    router as sales_member_router,
+)
+from app.modules.organization_sales_accounts.api.organization_sales_account_routes import (
+    router as organization_sales_account_router,
+)
 
 app = FastAPI()
 
@@ -74,7 +80,9 @@ app.include_router(organization_router)
 app.include_router(sales_organization_router)
 app.include_router(sales_team_router)
 app.include_router(territory_router,)
+app.include_router(sales_member_router)
 app.include_router(appointment_router)
+app.include_router(organization_sales_account_router)
 app.include_router(consultation_router)
 app.include_router(lab_router)
 app.include_router(optimization_router)

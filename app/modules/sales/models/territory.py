@@ -30,7 +30,7 @@ from app.modules.sales.constants.territory_enums import (
 
 if TYPE_CHECKING:
     from app.modules.sales.models.sales_organization import SalesOrganization
-    # from app.modules.sales.models.sales_member import SalesMember
+    from app.modules.sales.models.sales_member import SalesMember
 
 
 class Territory(
@@ -180,10 +180,10 @@ class Territory(
     )
 
     # -------------------------------------------------------------------------
-    # Future Relationships
+    # Foreign Keys
     # -------------------------------------------------------------------------
 
-    # sales_members: Mapped[list["SalesMember"]] = relationship(
-    #     "SalesMember",
-    #     back_populates="territory",
-    # )
+    sales_members: Mapped[list["SalesMember"]] = relationship(
+        "SalesMember",
+        back_populates="territory",
+    )
